@@ -1,4 +1,3 @@
-
 public class CadastroEstudantes{
 
 Aluno[] estudantes;
@@ -36,6 +35,51 @@ public void escreveVetor(CadastroEstudantes[] estudantes){
     }
 }
 
+public void ordemEstudantes(CadastroEstudantes[] estudantes){
+    Arrays.sort(CadastroEstudantes[]);
+    for(int i=0; i<estudantes.length; i++){
+        if(estudantes[i] != null){
+            System.out.println(estudante.getNome(i));
+            System.out.println(estudante.getCurso(i));
+        }
+        
+    }
 }
 
+public static mediaIdadeEstudantes(CadastroEstudantes[] estudantes){
+    Arrays.sort(CadastroEstudantes[]);
+    double a = 0;
+    for(int i=0; i<estudantes.length; i++){
+        if(estudantes[i] != null){
+            a = estudante.getIdade(i);
+            return a = a + i;
+        }else{
+                break;
+             }
+    }
+    double b = a/i;
+    System.out.println(b)
+}
 
+public void vogaisEstudantes{
+
+}
+
+public tipoGradEstudantes(CadastroEstudantes[] estudantes){
+    for(int i=0; i<estudantes.length; i++){
+        if(estudante.getMod.equals(presencial)){
+            //colocar algo que armazene a quantidade de vezes que o if for executado
+        }else{
+            if(estudante.getMod.equals(graduacaotecnologica)){
+                //colocar algo que armazene a quantidade de vezes que o if for executado
+            }else{
+                if(estudante.getMod.equals(especializacao)){
+                    //colocar algo que armazene a quantidade de vezes que o if for executado
+                }
+            }
+        }
+        
+    }
+}
+
+}
