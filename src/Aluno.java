@@ -36,40 +36,7 @@ public class Aluno {
         this.idade = idade; 
     }
     
-    public String getCpf(){
-        return cpf;
-    }
-
-    public void setCpf (String cpf){
-        if (cpf.length() == 11){
-        this. cpf = cpf; 
-        } else {
-            System.out.println("O CPF deve conter 11 digitos");
-        }
-    }
-    
-    public String getTelefone(){
-        return telefone;
-    }
-
-    public int getMod(int mod){
-        this.mod = mod;
-    }  
-
-    public String getCurso(){
-        return curso;
-    }
-
-    public int getDisc(){
-        return disc;
-    }
-
-    public void setDisc(int disc){
-        this.disc = disc;
-    }
-
-    public String[] getDisciplinasMatriculares;
-
+    public void 
 
 public String toString() { //tem que formatar o CPF e o num aqui!!!!
      
@@ -87,15 +54,10 @@ public String toString() { //tem que formatar o CPF e o num aqui!!!!
             formatCPF.append(".");
         }}
     StringBuilder formatnum = new StringBuilder; // formatador de num
-    int contadorNUM;    
+    int contadorNUM;
     String divnum = telefone;
-    String DDD = divnum.substring (0,3);
-    String num1 = divnum.substring (4, divnum.lenght() - 4);
-    String num2 = divnum.substring (divnum.lenght() - 4)
-    
-    
-    
-    return "Nome:"+nome+"| Idade:"+idade+"| CPF"+formatCPF+"-"+cpf2+"| Telefone: ("+DDD+") "+num1+"-"+num2+"| Tipo de curso"+ 
+    String 
+    return "Nome:"+nome+"| Idade:"+idade+"| CPF"+formatCPF+"-"+cpf2+"| telefone"
 
 }
 
