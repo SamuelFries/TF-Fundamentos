@@ -36,7 +36,9 @@ public class Aluno {
         this.idade = idade; 
     }
     
-    public void 
+    public int getMod(){
+        return this.mod;
+    }
 
 public String toString() { //tem que formatar o CPF e o num aqui!!!!
      
