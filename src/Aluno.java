@@ -8,18 +8,19 @@ public class Aluno {
     private int     mod; // entre 1 a 3
     private String  curso;
     private int     disc; // entre 2 a 6
-    private String[] disciMatriculas;
-}   
+    private String[] discMatriculadas;
 
-    public Aluno(String nome, int idade, String cpf, String telefone, int mod, String curso, int disc, String[] disciMatriculas){
+    //CONSTRUTOR
+    public Aluno(String nome, int idade, String cpf, String telefone, int mod, String curso, int disc, String[] discMatriculadas){
         this.nome = nome;
         this.idade = idade;
         this.mod = mod;
         this.curso = curso;
         this.disc = disc;
-        this.disciMatriculas = disciMatriculas;
+        this.discMatriculadas = discMatriculadas;
     }
 
+    //GET E SET
     public String getNome() {
         return nome;      
     }
@@ -36,30 +37,83 @@ public class Aluno {
         this.idade = idade; 
     }
     
-    public int getMod(){
-        return this.mod;
+    public String getCpf(){
+        return cpf;
     }
 
-public String toString() { //tem que formatar o CPF e o num aqui!!!!
-     
-    StringBuilder formatCPF = new StringBuilder; // formatador de CPF 
-    int contadorCPF = 0;
-    String divcpf = cpf;
-    String cpf2 = divcpf.substring( divcpf.lenght() - 2); // pega os dois ultimos
-    String cpf1 = divcpf.substring( 0, divcpf.lenght() -2); // pega o resto
-    //poderia ter sido feito com o Split(), mas n sei como (nem sei se da)
-    for (char digito : cpf1.toCharArray()) {// n sei direito o pq : e n =, mas funciona 
-        formatCPF.append(digito);
-        contadorCPF++;
+    public void setCpf (String cpf){
+        if (cpf.length() == 11){
+        this. cpf = cpf; 
+        } else {
+            System.out.println("O CPF deve conter 11 digitos");
+        }
+    }
+    
+    public String getTelefone(){
+        return telefone;
+    }
 
-        if (contadorCPF % 3 == 0 && contadorCPF != cpf1.lenght()) {
-            formatCPF.append(".");
-        }}
-    StringBuilder formatnum = new StringBuilder; // formatador de num
-    int contadorNUM;
-    String divnum = telefone;
-    String 
-    return "Nome:"+nome+"| Idade:"+idade+"| CPF"+formatCPF+"-"+cpf2+"| telefone"
+    public int getMod(){
+        return mod;
+    }  
 
+    public void setMod(int mod){
+        this.mod = mod;
+    }
+
+    public String getCurso(){
+        return curso;
+    }
+
+    public int getDisc(){
+        return disc;
+    }
+
+    public void setDisc(int disc){
+        this.disc = disc;
+    }
+
+    public String[] getDiscMatricus(){
+        return discMatriculadas;
+    }
+
+    public void setDiscMatriculadas(String[] discMatriculadas) {
+        this.discMatriculadas = discMatriculadas;
+    }
+    
+    //MÉTODO toString PARA FORMATAR
+    public String toString() {
+        return "Nome: " + nome +
+                "\nIdade: " + idade +
+                "\nCPF: " + formatarCpf() +
+                "\nTelefone: " + formatarTelefone() +
+                "\nModalidade do Curso: " + obterMod() +
+                "\nNome do Curso: " + curso +
+                "\nQuantidade de Disciplinas: " + disc +
+                "\nDisciplinas Matriculadas: " + Arrays.toString(discMatriculadas);
+    }
+
+    //MÉTODO PARA FORMATAR O CPF
+    private String formatarCpf() {       
+         return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9);
+    }  
+
+    //MÉTODO PARA FORMATAR TELEFONE
+    private String formatarTelefone() {
+        return "(" + telefone.substring(0, 3) + ") " + telefone.substring(3, 8) + "-" + telefone.substring(8);
+    }
+
+      // MÉTODO PARA OBTER MODALIDADE DO CURSO POR EXTENSO
+      private String obterMod() {
+        switch (mod) {
+            case 1:
+                return "Extensão";
+            case 2:
+                return "Graduação Tecnológica";
+            case 3:
+                return "Especialização";
+            default:
+                return "Tipo de curso inválido";
+        }
+    }
 }
-
