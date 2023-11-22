@@ -23,11 +23,11 @@ public class CadastroEstudantes{
 
     public void removerEstudante(String nome) {
         for (int i = 0; i < 10; i++) {
-            if (this.estudantes[i] != null && this.estudantes[i].getNome().equals(nome)) {
+            if (this.estudantes[i] != null && this.estudantes[i].getNome().toLowerCase().equals(nome.toLowerCase())) {
                 this.estudantes[i] = null;
                 System.out.println("Estudante removido: " + nome);
                 return; // Se encontrou e removeu o item, pode sair do loop
-            }else{
+            }else if(i==9){
                 System.out.println("Estudante nao encontrado: " + nome);
             }
         }
@@ -36,35 +36,45 @@ public class CadastroEstudantes{
     public void escreveVetor(){
         for(int i=0; i<this.estudantes.length; i++){
             if(this.estudantes[i] != null){
-                System.out.println(this.estudantes[i].toString());
+                System.out.println(this.estudantes[i].toString()+"\n");
             }
         }
     }
 
     public void ordemEstudantes(){
-        Arrays.sort(this.estudantes);
-        for(int i=0; i<this.estudantes.length; i++){
-            if(this.estudantes[i] != null){
-                System.out.println(estudantes[i].getNome());
-                System.out.println(estudantes[i].getCurso());
-            }
+        for(int i=0; i<estudantes.length-1; i++){
+            for(int j=0; j<estudantes.length-1; j++){
+                if(estudantes[i]!= null && estudantes[j] != null){
+                    if(comparacao(estudantes[i].getNome().toLowerCase(), estudantes[j].getNome().toLowerCase())){
+                        Aluno aux = estudantes[i];
+                        estudantes[i] = estudantes[j];
+                        estudantes [j] = aux;
+                    }
+                }
+            }    
         }
+        escreveVetor();
+    }
+
+    public boolean comparacao(String palavra1, String palavra2){
+        if(palavra1.charAt(0)<palavra2.charAt(0)){
+            return true;
+        }return false;
     }
 
     public void mediaIdadeEstudantes(){
-        Arrays.sort(this.estudantes);
         double somaIdades = 0;
         int i = 0;
+        int alunosComparados = 0;
 
         for(i=0; i<this.estudantes.length; i++){
             if(this.estudantes[i] != null){
-                somaIdades =+ this.estudantes[i].getIdade();
-            }else{
-                break;
+                somaIdades += this.estudantes[i].getIdade();
+                alunosComparados++;
             }
         }
 
-        System.out.println(somaIdades/(i+1));
+        System.out.println(somaIdades/alunosComparados);
     }
 
     public void vogaisEstudantes(){
@@ -89,7 +99,7 @@ public class CadastroEstudantes{
                     vogaisAntes = vogaisAgora;
                     nomesVogais[i] = nome;
                 }
-            }else{
+            }else if(i==10){
                 System.out.println("Não ha estudantes cadastrados.");
             }    
         }
@@ -109,36 +119,36 @@ public class CadastroEstudantes{
     }
 
     public void tipoGradEstudantes(){
-        Arrays.sort(this.estudantes);
         int pre = 0;
         int gradTec = 0;
         int esp = 0;
         int i=0;
-        if(this.estudantes[0] != null){
+        int alunosComparados = 0;
+        
         for(i=0; i<estudantes.length; i++){
-            switch (this.estudantes[i].getMod()) {
-                case 1:
-                    pre++;
-                    break;
-                
-                case 2:
-                    gradTec++;
-                    break;
+            if(this.estudantes[i] != null){
+                alunosComparados++;
+                switch (this.estudantes[i].getMod()) {
+                    case 1:
+                        pre++;
+                        break;
+                    
+                    case 2:
+                        gradTec++;
+                        break;
 
-                case 3:
-                    esp++;
-                    break;
+                    case 3:
+                        esp++;
+                        break;
+                }
+            }else if(i==10){
+                System.out.println("Nao existe alunos matriculados.");
             }
         }
     
-
-        System.out.println("Matriculados em modalidade graduacao "+((pre/i)*100)+" porcento.");
-        System.out.println("Matriculados em modalidade graduacao técnologica "+((gradTec/i)*100)+" porcento.");
-        System.out.println("Matriculados em modalidade especializacao "+((esp/i)*100)+" porcento.");
-        }else{
-            System.out.println("Nao existe alunos matriculados.");
-        }
-
+        System.out.println("Matriculados em modalidade graduacao "+((pre*100/alunosComparados))+" porcento.");
+        System.out.println("Matriculados em modalidade graduacao técnologica "+((gradTec*100/alunosComparados))+" porcento.");
+        System.out.println("Matriculados em modalidade especializacao "+((esp*100/alunosComparados))+" porcento.");
     }
 
 }
