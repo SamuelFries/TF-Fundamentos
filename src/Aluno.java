@@ -5,15 +5,17 @@ public class Aluno {
     private int     idade;
     private String  cpf;
     private String  telefone;
-    private int     mod; // entre 1 a 3
+    private int     mod; 
     private String  curso;
-    private int     disc; // entre 2 a 6
+    private int     disc; 
     private String[] discMatriculadas;
 
     //CONSTRUTOR
     public Aluno(String nome, int idade, String cpf, String telefone, int mod, String curso, int disc, String[] discMatriculadas){
         this.nome = nome;
         this.idade = idade;
+        this.cpf = cpf;
+        this.telefone = telefone;
         this.mod = mod;
         this.curso = curso;
         this.disc = disc;
@@ -43,7 +45,7 @@ public class Aluno {
 
     public void setCpf (String cpf){
         if (cpf.length() == 11){
-        this. cpf = cpf; 
+        this.cpf = cpf; 
         } else {
             System.out.println("O CPF deve conter 11 digitos");
         }
@@ -95,12 +97,19 @@ public class Aluno {
 
     //MÉTODO PARA FORMATAR O CPF
     private String formatarCpf() {       
-         return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9);
+         return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9,11);
     }  
 
     //MÉTODO PARA FORMATAR TELEFONE
     private String formatarTelefone() {
-        return "(" + telefone.substring(0, 3) + ") " + telefone.substring(3, 8) + "-" + telefone.substring(8);
+        return "(" + 
+        telefone.substring(0, 3) + 
+        ") " + 
+        telefone.substring(3, 4) + 
+        " " + 
+        telefone.substring(4, 8) + 
+        "-" + 
+        telefone.substring(8,11);
     }
 
       // MÉTODO PARA OBTER MODALIDADE DO CURSO POR EXTENSO
