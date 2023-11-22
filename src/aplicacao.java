@@ -155,12 +155,17 @@ public class Aplicacao {
 
                     break;  
                 
+                case 8:
+
+                    System.out.println("Obrigado por ter utilizado a aplicação, até uma próxima!");
+                    
+                    break;
+
                 default:
                     System.out.println("Opção Inválida.");
                     break;
             }
 
         }while(escolha != 8);
-        System.out.println("Obrigado por ter utilizado a aplicação, até uma próxima!");
     }
 }
