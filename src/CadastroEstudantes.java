@@ -99,7 +99,7 @@ public class CadastroEstudantes{
                     vogaisAntes = vogaisAgora;//se for igual atribui o vogais Agora para o vogaisAntes
                     nomesVogais[i] = nome;
                 }
-            }else if(i==9){//se chegar ao ultimo indice sem comparações, imprime que nao ha estudantes cadastrados
+            }else if(i==10){//se chegar ao ultimo indice sem comparações, imprime que nao ha estudantes cadastrados
                 System.out.println("Não ha estudantes cadastrados.");
             }    
         }
