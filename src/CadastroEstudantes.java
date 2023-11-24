@@ -151,4 +151,15 @@ public class CadastroEstudantes{
         System.out.println("Matriculados em modalidade especializacao "+((esp*100/alunosComparados))+"%.");
     }
 
+    public String[] geraVetorDisciplinas(Scanner in, int quantidadeDisciplinas){
+        String[] disciplinas = new String[quantidadeDisciplinas];
+        
+        for(int i = 0; i<quantidadeDisciplinas; i++){
+            String disc = in.next();
+            disciplinas[i] = disc;
+        }
+
+        return disciplinas;
+    }
+
 }
