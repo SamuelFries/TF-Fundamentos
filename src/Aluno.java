@@ -1,128 +1,176 @@
 import java.util.*;
 
-public class Aluno {
-    private String  nome;
-    private int     idade;
-    private String  cpf;
-    private String  telefone;
-    private int     mod; 
-    private String  curso;
-    private int     disc; 
-    private String[] discMatriculadas;
+import javax.sound.sampled.SourceDataLine;
 
-    //CONSTRUTOR
-    public Aluno(String nome, int idade, String cpf, String telefone, int mod, String curso, int disc, String[] discMatriculadas){
-        this.nome = nome;
-        this.idade = idade;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.mod = mod;
-        this.curso = curso;
-        this.disc = disc;
-        this.discMatriculadas = discMatriculadas;
-    }
+public class aplicacao {
+    static CadastroEstudantes cadastro = new CadastroEstudantes();
 
-    //GET E SET
-    public String getNome() {
-        return nome;      
-    }
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);//utilizado para tipo String
+        Scanner in2= new Scanner(System.in);//utilizado para tipo Int
+        CadastroEstudantes registro = new CadastroEstudantes();
+        int escolha = 0;
+        cadastro.addEstudante(new Aluno(//criação dos 3 estudantes que ja deveriam estar cadastrados, conforme enunciado do TF
+        "Joao", 
+        28, 
+        "20505361434", 
+        "051927099195", 
+        1, 
+        "Ciencia da Computacao", 
+        3, 
+        null));
+        
+        cadastro.addEstudante(new Aluno(
+        "Gabriel", 
+        20, 
+        "38116643959", 
+        "051921337891", 
+        3, 
+        "Ciencia da Computacao", 
+        2, 
+        null));
 
-    public void setNome (String nome){
-        this.nome = nome; 
-    }
-    
-    public int getIdade(){
-        return idade;
-    }
-    
-    public void setIdade(int idade){
-        this.idade = idade; 
-    }
-    
-    public String getCpf(){
-        return cpf;
-    }
+        cadastro.addEstudante(new Aluno(
+        "Neri", 
+        28, 
+        "78743311849", 
+        "051929226357", 
+        2, 
+        "Ciencia da Computacao", 
+        4, 
+        null));
 
-    public void setCpf (String cpf){
-        if (cpf.length() == 11){
-        this.cpf = cpf; 
-        } else {
-            System.out.println("O CPF deve conter 11 digitos");
-        }
-    }
-    
-    public String getTelefone(){
-        return telefone;
-    }
+        do{//menu ao iniciar o programa
+            System.out.println("\nBem vindo ao aplicativo do Portal Educacional!");
+            System.out.println("O que deseja fazer?");
+            System.out.println("1 - Adicionar Estudante;");
+            System.out.println("2 - Remover Estudante;");
+            System.out.println("3 - Verificar informações dos Estudantes;");
+            System.out.println("4 - Estudante em ordem alfabética;");
+            System.out.println("5 - Media de Idade dos Estudante;");
+            System.out.println("6 - Nome do Estudante com maior numero de vogais;");
+            System.out.println("7 - Porcentagem de Estudantes por Curso;");
+            System.out.println("8 - Sair do Aplicativo.");
+            escolha = in2.nextInt() ;
+            //declaracao de variaveis para utilizacao no switch
+            int idade=0;
+            String cpf = "";
+            String telefone = "";
+            int mod = 0;
+            int disc =0;
 
-    public int getMod(){
-        return mod;
-    }  
+            switch (escolha) {
+                case 1:
+                    
+                    System.out.println("\nDigite o nome do Estudante a ser adicionado:");
+                    String nome = in.next();
+                    boolean idadeCorreta = false;
+                    do{
+                        System.out.println("\nDigite a idade do Estudante:");
+                        System.out.println("Utilize somente números.");
+                        in2 = new Scanner(System.in);
+                        try{
+                            idade = in2.nextInt();
+                            idadeCorreta = true;
+                        }catch(Exception e){
+                            System.out.println("Digite apenas numeros.");
+                        }
+                    }while(!idadeCorreta);
 
-    public void setMod(int mod){
-        this.mod = mod;
-    }
+                    do{
+                    System.out.println("\nDigite o cpf do Estudante:");
+                    System.out.println("Utilize apenas números.");
+                    cpf = in.next();
+                        if(cpf.length()<9 || cpf.length()>11){//esse if testa se o usuario colocou um numero de cpf com 11 digitos
+                            System.out.println("Revise seu CPF, ele deve conter 11 numeros.");
+                        }
+                    }while(cpf.length()<9 || cpf.length()>11);//repete o processo ate o usuario colocar um cpf de 11 digitos
 
-    public String getCurso(){
-        return curso;
-    }
+                    do{
+                    System.out.println("\nDigite o telefone do Estudante:");
+                    System.out.println("Utilize apenas números e coloque o seu DDD.");
+                    telefone = in2.next();
+                        if(telefone.length()<10 || telefone.length()>12){
+                            System.out.println("Revise seu Numero de telefone, ele deve conter 12 digitos. Exemplo: 051995678234");
+                        }
+                    }while(telefone.length()<10 || telefone.length()>12);//repete o processo ate o usuario colocar um numero de telefone correto    
 
-    public int getDisc(){
-        return disc;
-    }
+                    do{
+                    System.out.println("\nDigite a modalidade do curso do Estudante:");
+                    System.out.println("1- Extensão");
+                    System.out.println("2- Graduação Tecnológica");
+                    System.out.println("3- Especialização");
+                    mod = in2.nextInt();
+                    }while(mod!=1 && mod!=2 && mod!=3);//garante que o usuario coloque uma modalidade valida
 
-    public void setDisc(int disc){
-        this.disc = disc;
-    }
+                    System.out.println("\nDigite o curso do Estudante:");
+                    String curso = in.next();
 
-    public String[] getDiscMatriculadas(){
-        return discMatriculadas;
-    }
+                    do{
+                    System.out.println("\nDigite o numero de disciplinas do Estudante:");
+                    disc = in2.nextInt();
+                        if(disc<2 || disc >6){
+                            System.out.println("Revise! Minimo de disciplinas = 2. Maximo de disciplinas = 6.");
+                        }
+                    }while(disc < 2 || disc > 6);
 
-    public void setDiscMatriculadas(String[] discMatriculadas) {
-        this.discMatriculadas = discMatriculadas;
-    }
-    
-    //MÉTODO toString PARA FORMATAR
-    public String toString() {
-        return "Nome: " + nome +
-                "\nIdade: " + idade +
-                "\nCPF: " + formatarCpf() +
-                "\nTelefone: " + formatarTelefone() +
-                "\nModalidade do Curso: " + obterMod() +
-                "\nNome do Curso: " + curso +
-                "\nQuantidade de Disciplinas: " + disc +
-                "\nDisciplinas Matriculadas: " + Arrays.toString(discMatriculadas);
-    }
+                    System.out.println("\nDigite o nome das disciplinas do Estudante:");
+                    String[] discMatriculadas = cadastro.geraVetorDisciplinas(in, disc);
 
-    //MÉTODO PARA FORMATAR O CPF
-    private String formatarCpf() {       
-         return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9,11);
-    }  
+                    Aluno estudante = new Aluno(nome, idade, cpf, telefone, mod, curso, disc, discMatriculadas);
 
-    //MÉTODO PARA FORMATAR TELEFONE
-    private String formatarTelefone() {
-        return "(" + 
-        telefone.substring(0, 3) + 
-        ") " + 
-        telefone.substring(3, 4) + 
-        " " + 
-        telefone.substring(4, 8) + 
-        "-" + 
-        telefone.substring(8,11);
-    }
+                    cadastro.addEstudante(estudante);
+                    
+                    break;
+            
+                case 2:
+                
+                    System.out.println("Digite o nome do Estudante a ser removido:");
+                    String aluno = in.next();
+                    cadastro.removerEstudante(aluno);
+                    break;
 
-      // MÉTODO PARA OBTER MODALIDADE DO CURSO POR EXTENSO
-      private String obterMod() {
-        switch (mod) {
-            case 1:
-                return "Extensão";
-            case 2:
-                return "Graduação Tecnológica";
-            case 3:
-                return "Especialização";
-            default:
-                return "Tipo de curso inválido";
-        }
+                case 3:
+
+                    cadastro.escreveVetor();
+
+                    break;
+
+                case 4:
+
+                    cadastro.ordemEstudantes();
+
+                    break;
+
+                case 5:
+
+                    cadastro.mediaIdadeEstudantes();
+
+                    break;
+
+                case 6:
+
+                    cadastro.vogaisEstudantes();
+
+                    break;
+
+                case 7:
+
+                    cadastro.tipoGradEstudantes();
+
+                    break;  
+                
+                case 8:
+
+                    System.out.println("Obrigado por ter utilizado a aplicação, até uma próxima!");
+
+                    break;
+
+                default:
+                    System.out.println("Opção Inválida.");
+                    break;
+            }
+
+        }while(escolha != 8);//enquanto o usuario nao utilizar a opção 8, não saira do programa
     }
 }
