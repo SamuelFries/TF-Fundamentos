@@ -2,7 +2,7 @@ import java.util.*;
 
 import javax.sound.sampled.SourceDataLine;
 
-public class aplicacao {
+public class Aplicacao{
     static CadastroEstudantes cadastro = new CadastroEstudantes();
 
     public static void main(String[] args) {
@@ -11,14 +11,14 @@ public class aplicacao {
         CadastroEstudantes registro = new CadastroEstudantes();
         int escolha = 0;
         cadastro.addEstudante(new Aluno(//criação dos 3 estudantes que ja deveriam estar cadastrados, conforme enunciado do TF
-        "Joao", 
-        28, 
-        "20505361434", 
-        "051927099195", 
-        1, 
-        "Ciencia da Computacao", 
-        3, 
-        null));
+        "Joao",//nome
+        28,//idade
+        "20505361434",//cpf 
+        "051927099195",//telefone 
+        1,//graduacao
+        "Ciencia da Computacao",//curso 
+        3,//numero de discilpinas 
+        new String[]{"FundamentosdeProgramação", "Calculo1", "MatematicaDiscreta"}));//nome das disciplinas armazenadas em um obejto
         
         cadastro.addEstudante(new Aluno(
         "Gabriel", 
@@ -28,20 +28,20 @@ public class aplicacao {
         3, 
         "Ciencia da Computacao", 
         2, 
-        null));
+        new String[]{"Calculo1","MatematicaDiscreta"}));
 
         cadastro.addEstudante(new Aluno(
         "Neri", 
-        28, 
+        37, 
         "78743311849", 
         "051929226357", 
         2, 
         "Ciencia da Computacao", 
         4, 
-        null));
+        new String[]{"Programacaoorientadaaobjetos","MatematicaDiscreta","FundamentosdeProgramacao","SistemasDigitais"}));
 
         do{//menu ao iniciar o programa
-            System.out.println("\nBem vindo ao aplicativo do Portal Educacional!");
+            System.out.println("Bem vindo ao aplicativo do Portal Educacional!");
             System.out.println("O que deseja fazer?");
             System.out.println("1 - Adicionar Estudante;");
             System.out.println("2 - Remover Estudante;");
@@ -64,33 +64,36 @@ public class aplicacao {
                     
                     System.out.println("\nDigite o nome do Estudante a ser adicionado:");
                     String nome = in.next();
-                    
+                    boolean idadeCorreta = false;
                     do{
-                    System.out.println("\nDigite a idade do Estudante:");
-                    System.out.println("Utilize somente números.");
-                    idade = in2.nextInt();
-                        if(idade>150){
-                            System.out.println("Revise sua Idade.");
+                        System.out.println("\nDigite a idade do Estudante:");
+                        System.out.println("Utilize somente números.");
+                        in2 = new Scanner(System.in);
+                        try{//executa o bloco do "try", se der falso, executa o bloco do "catch". Esse método foi aprendido na internet
+                            idade = in2.nextInt();
+                            idadeCorreta = true;
+                        }catch(Exception e){
+                            System.out.println("Digite apenas numeros.");
                         }
-                    }while(idade>150);
+                    }while(!idadeCorreta);
 
                     do{
                     System.out.println("\nDigite o cpf do Estudante:");
                     System.out.println("Utilize apenas números.");
                     cpf = in.next();
-                        if(cpf.length()<9 || cpf.length()>11){//esse if testa se o usuario colocou um numero de cpf com 11 digitos
+                        if(cpf.length()<10 || cpf.length()>11){//esse if testa se o usuario colocou um numero de cpf com 11 digitos
                             System.out.println("Revise seu CPF, ele deve conter 11 numeros.");
                         }
-                    }while(cpf.length()<9 || cpf.length()>11);//repete o processo ate o usuario colocar um cpf de 11 digitos
+                    }while(cpf.length()<10 || cpf.length()>11);//repete o processo ate o usuario colocar um cpf de 11 digitos
 
                     do{
                     System.out.println("\nDigite o telefone do Estudante:");
                     System.out.println("Utilize apenas números e coloque o seu DDD.");
                     telefone = in2.next();
-                        if(telefone.length()<10 || telefone.length()>12){
+                        if(telefone.length()<11 || telefone.length()>12){
                             System.out.println("Revise seu Numero de telefone, ele deve conter 12 digitos. Exemplo: 051995678234");
                         }
-                    }while(telefone.length()<10 || telefone.length()>12);//repete o processo ate o usuario colocar um numero de telefone correto    
+                    }while(telefone.length()<11 || telefone.length()>12);//repete o processo ate o usuario colocar um numero de telefone correto    
 
                     do{
                     System.out.println("\nDigite a modalidade do curso do Estudante:");
@@ -110,11 +113,10 @@ public class aplicacao {
                             System.out.println("Revise! Minimo de disciplinas = 2. Maximo de disciplinas = 6.");
                         }
                     }while(disc < 2 || disc > 6);
+                    
+                    String[] discMatriculadas = cadastro.geraVetorDisciplinas(in2, disc);
 
-                    System.out.println("\nDigite o nome das disciplinas do Estudante:");
-                    String discMatriculadas = in.next();
-
-                    Aluno estudante = new Aluno(nome, idade, cpf, telefone, mod, curso, disc, new String[disc]);
+                    Aluno estudante = new Aluno(nome, idade, cpf, telefone, mod, curso, disc, discMatriculadas);
 
                     cadastro.addEstudante(estudante);
                     
