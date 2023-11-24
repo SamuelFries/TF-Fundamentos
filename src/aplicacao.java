@@ -2,7 +2,7 @@ import java.util.*;
 
 import javax.sound.sampled.SourceDataLine;
 
-public class Aplicacao {
+public class aplicacao {
     static CadastroEstudantes cadastro = new CadastroEstudantes();
 
     public static void main(String[] args) {
@@ -10,7 +10,7 @@ public class Aplicacao {
         Scanner in2= new Scanner(System.in);//utilizado para tipo Int
         CadastroEstudantes registro = new CadastroEstudantes();
         int escolha = 0;
-        cadastro.addEstudante(new Aluno(
+        cadastro.addEstudante(new Aluno(//criação dos 3 estudantes que ja deveriam estar cadastrados, conforme enunciado do TF
         "Joao", 
         28, 
         "20505361434", 
@@ -40,7 +40,7 @@ public class Aplicacao {
         4, 
         null));
 
-        do{
+        do{//menu ao iniciar o programa
             System.out.println("\nBem vindo ao aplicativo do Portal Educacional!");
             System.out.println("O que deseja fazer?");
             System.out.println("1 - Adicionar Estudante;");
@@ -52,6 +52,7 @@ public class Aplicacao {
             System.out.println("7 - Porcentagem de Estudantes por Curso;");
             System.out.println("8 - Sair do Aplicativo.");
             escolha = in2.nextInt() ;
+            //declaracao de variaveis para utilizacao no switch
             int idade=0;
             String cpf = "";
             String telefone = "";
@@ -66,6 +67,7 @@ public class Aplicacao {
                     
                     do{
                     System.out.println("\nDigite a idade do Estudante:");
+                    System.out.println("Utilize somente números.");
                     idade = in2.nextInt();
                         if(idade>150){
                             System.out.println("Revise sua Idade.");
@@ -76,19 +78,19 @@ public class Aplicacao {
                     System.out.println("\nDigite o cpf do Estudante:");
                     System.out.println("Utilize apenas números.");
                     cpf = in.next();
-                        if(cpf.length()<1 || cpf.length()>11){
+                        if(cpf.length()<9 || cpf.length()>11){//esse if testa se o usuario colocou um numero de cpf com 11 digitos
                             System.out.println("Revise seu CPF, ele deve conter 11 numeros.");
                         }
-                    }while(cpf.length()<1 || cpf.length()>11);
+                    }while(cpf.length()<9 || cpf.length()>11);//repete o processo ate o usuario colocar um cpf de 11 digitos
 
                     do{
                     System.out.println("\nDigite o telefone do Estudante:");
                     System.out.println("Utilize apenas números e coloque o seu DDD.");
                     telefone = in2.next();
-                        if(telefone.length()<1 || telefone.length()>12){
+                        if(telefone.length()<10 || telefone.length()>12){
                             System.out.println("Revise seu Numero de telefone, ele deve conter 12 digitos. Exemplo: 051995678234");
                         }
-                    }while(telefone.length()<1 || telefone.length()>12);    
+                    }while(telefone.length()<10 || telefone.length()>12);//repete o processo ate o usuario colocar um numero de telefone correto    
 
                     do{
                     System.out.println("\nDigite a modalidade do curso do Estudante:");
@@ -96,7 +98,7 @@ public class Aplicacao {
                     System.out.println("2- Graduação Tecnológica");
                     System.out.println("3- Especialização");
                     mod = in2.nextInt();
-                    }while(mod!=1 && mod!=2 && mod!=3);
+                    }while(mod!=1 && mod!=2 && mod!=3);//garante que o usuario coloque uma modalidade valida
 
                     System.out.println("\nDigite o curso do Estudante:");
                     String curso = in.next();
@@ -158,7 +160,7 @@ public class Aplicacao {
                 case 8:
 
                     System.out.println("Obrigado por ter utilizado a aplicação, até uma próxima!");
-                    
+
                     break;
 
                 default:
@@ -166,6 +168,6 @@ public class Aplicacao {
                     break;
             }
 
-        }while(escolha != 8);
+        }while(escolha != 8);//enquanto o usuario nao utilizar a opção 8, não saira do programa
     }
 }
