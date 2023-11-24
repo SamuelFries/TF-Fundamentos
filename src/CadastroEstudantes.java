@@ -146,9 +146,9 @@ public class CadastroEstudantes{
             }
         }
     
-        System.out.println("Matriculados em modalidade graduacao "+((pre*100/alunosComparados))+" porcento.");
-        System.out.println("Matriculados em modalidade graduacao técnologica "+((gradTec*100/alunosComparados))+" porcento.");
-        System.out.println("Matriculados em modalidade especializacao "+((esp*100/alunosComparados))+" porcento.");
+        System.out.println("Matriculados em modalidade graduacao "+((pre*100/alunosComparados))+"%.");
+        System.out.println("Matriculados em modalidade graduacao técnologica "+((gradTec*100/alunosComparados))+"%.");
+        System.out.println("Matriculados em modalidade especializacao "+((esp*100/alunosComparados))+"%.");
     }
 
 }
