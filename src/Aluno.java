@@ -75,13 +75,17 @@ public class Aluno {
         this.disc = disc;
     }
 
-    public String[] getDiscMatricus(){
+    public String[] getDiscMatriculadas(){
         return discMatriculadas;
     }
 
     public void setDiscMatriculadas(String[] discMatriculadas) {
         this.discMatriculadas = discMatriculadas;
     }
+
+    /*public discMatriculadas(String[getDisc()] discMatriculadas){
+        this.discMatriculadas = new discMatriculadas[];
+    }*/
     
     //MÉTODO toString PARA FORMATAR
     public String toString() {
