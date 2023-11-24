@@ -94,14 +94,14 @@ public class Aluno {
                 "\nQuantidade de Disciplinas: " + disc +
                 "\nDisciplinas Matriculadas: " + Arrays.toString(discMatriculadas);
     }
-
+    
     //MÉTODO PARA FORMATAR O CPF
     private String formatarCpf() {       
          return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9,11);
     }  
 
     //MÉTODO PARA FORMATAR TELEFONE
-    private String formatarTelefone() {
+    private String formatarTelefone() {//foi utilizado o substring para formatar o numero do telefone
         return "(" + 
         telefone.substring(0, 3) + 
         ") " + 
